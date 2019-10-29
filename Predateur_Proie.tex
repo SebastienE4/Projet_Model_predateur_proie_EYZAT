@@ -1,1 +1,84 @@
 
+\documentclass[a4paper,16pt,twoside]{report}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[utf8x]{inputenc}
+\title{Modèle Prédateurs/Proies}
+\date{\today}
+\author{Sebatien EYZAT\thanks{\href{seb.eyzat@gmail.com}{\tt seb.eyzat@gmail.com}}
+}
+\def \rr {{\mathbb R}} % L'ensemble R
+\def \cc {{\mathbb C}} % L'ensemble C
+\def \nn {{\mathbb N}} % L'ensemble N
+\def \zz {{\mathbb Z}} % L'ensemble Z
+\begin{document}
+\maketitle
+
+\cleardoublepage
+\tableofcontents
+
+\chapter{Partie Théorique}
+\section{Présentation}
+Le modèle prédateurs/proies, ou aussi appelé équation e prédation de Lokta-Volterra, est un système d'équations différentielles modélisant l'évolution d'une population de prédateurs et d'une population de proies.\\
+Entre autre, ce système est utilisé pour décrire un système biogique ou prédateurs et proies intéragissent.
+
+
+Historiquement, ce système a été proposé par le mathématicien/statisticien Autrichien Alfred James LOKTA en 1925 et par le mathématicien/physicien italien Vito VOLTERRA en 1926.
+
+
+Deux exemples concrets d'utilisations de ce système d'équations différentielles, sont l'étude du comportement des populations du lynx et du lièvre des neiges qui intéragissent ensemble. Ainsi que l'étude des neuronnes cholinergiques responsables du sommeil paradoxal par rapport au neuronnes aminergique liées à l'état de veille.
+
+
+Dans notre cas, pour plus de facilités de compréhension nous allons étudier ce modèle dans le cas "animal".
+\section{Présentation de l'équation différentielle}
+L'équation de prédation de Lokta-Volterra, est un couple d'équations différentielles non linéaires du premier ordre suivant:\\
+\begin{equation}
+   \left\{
+    \begin{array}{rcr}
+    \frac{dx(t)}{dt}=x(t)(\alpha - \beta y(t))\\
+    \frac{dy(t)}{dt}=y(t)(\delta x(t)- \gamma)
+    \end{array}
+		\right.
+\end{equation}\\
+
+
+
+
+Où x représente la population des proies (lievres des neiges), et y représente la population des prédateurs(les lynx).\\
+
+
+
+
+Avec $\alpha$, $\beta$, $\gamma$ et $\delta$ des constantes positives représentant respéctivement:\\
+    -la reproduction exponentielle, qui ne dépend pas des prédateurs.\\
+    -le taux de prédation qui est proportionnelle à la fréquence des rencontres.\\
+    -la croissance de la population proportionnelle au nombre de proies.\\
+    -Le nombre de morts naturelles qui ne dépend pas des proies qui décroit exponentiellement.\\
+    
+    
+    On suppose dans ce modèle que les proies ont nourriture illimitées, et que tous les individus sont en pleine santé.\\
+    On remarque clairement que en l'absence de proies le nombre de prédateurs tend vers l'extinction, alors que en l'absence de prédateurs le nombres de proies croient vers l'infini.\\
+    
+    
+    
+    De manière mathématiques, on le remarque car la solution de la première équation pour y = 0 est : $x(t)=e^{\alpha t}+constante$ (croissance exponentielle).\\ Puis si x = 0, pour la deuxième équation on a : $y(t)=e^{- \gamma t}+ constante$ (décroissance exponentielle).\\
+    
+    
+    
+    On verra par la suite, la résolution mathématique pour les différents cas, ainsi que les différentes interprétations que l'on pourra faire.\\
+    
+    \chapter{Partie analytique}
+    
+\section{Analyse des points critiques}
+Pour trouver les points critiques, il suffit de resoudre réspectivement : $\frac{dx(t)}{dt} = 0$ et $\frac{dy(t)}{dt} = 0$.\\
+Une solution évidente est $x = 0$ et $y =0$, donc le vecteur $X_1 = \begin{pmatrix} 0\\0 \end{pmatrix}$, pour le deuxième point critique il faut résoudre $\alpha - \beta y = 0$ et $\delta x - \gamma = 0$.
+    
+
+
+\end{document}
