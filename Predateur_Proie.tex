@@ -1,12 +1,12 @@
-
 \documentclass[a4paper,16pt,twoside]{report}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{amsfonts}
 \usepackage{amstext}
 \usepackage{hyperref}
-\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage[utf8x]{inputenc}
 \title{Modèle Prédateurs/Proies}
@@ -25,14 +25,14 @@
 
 \chapter{Partie Théorique}
 \section{Présentation}
-Le modèle prédateurs/proies, ou aussi appelé équation e prédation de Lokta-Volterra, est un système d'équations différentielles modélisant l'évolution d'une population de prédateurs et d'une population de proies.\\
-Entre autre, ce système est utilisé pour décrire un système biogique ou prédateurs et proies intéragissent.
+Le modèle prédateurs/proies ,aussi appelé équation de prédation de Lokta-Volterra, est un système d'équations différentielles modélisant l'évolution d'une population de prédateurs et d'une population de proies.\\
+Entre autre, ce système est utilisé pour décrire un système biogique où prédateurs et proies intéragissent.
 
 
 Historiquement, ce système a été proposé par le mathématicien/statisticien Autrichien Alfred James LOKTA en 1925 et par le mathématicien/physicien italien Vito VOLTERRA en 1926.
 
 
-Deux exemples concrets d'utilisations de ce système d'équations différentielles, sont l'étude du comportement des populations du lynx et du lièvre des neiges qui intéragissent ensemble. Ainsi que l'étude des neuronnes cholinergiques responsables du sommeil paradoxal par rapport au neuronnes aminergique liées à l'état de veille.
+Deux exemples concrets d'utilisations de ce système d'équations différentielles, sont l'étude du comportement des populations du lynx et du lièvre des neiges qui intéragissent ensemble. Ainsi que l'étude des neuronnes cholinergiques responsables du sommeil paradoxal par rapport aux neuronnes aminergique liées à l'état de veille.
 
 
 Dans notre cas, pour plus de facilités de compréhension nous allons étudier ce modèle dans le cas "animal".
@@ -50,20 +50,20 @@ L'équation de prédation de Lokta-Volterra, est un couple d'équations différe
 
 
 
-Où x représente la population des proies (lievres des neiges), et y représente la population des prédateurs(les lynx).\\
+Où x représente la population des proies (lievres des neiges), et y représente la population des prédateurs (les lynx).\\
 
 
 
 
 Avec $\alpha$, $\beta$, $\gamma$ et $\delta$ des constantes positives représentant respéctivement:\\
     -la reproduction exponentielle, qui ne dépend pas des prédateurs.\\
-    -le taux de prédation qui est proportionnelle à la fréquence des rencontres.\\
+    -le taux de prédation qui est proportionnel à la fréquence des rencontres.\\
     -la croissance de la population proportionnelle au nombre de proies.\\
     -Le nombre de morts naturelles qui ne dépend pas des proies qui décroit exponentiellement.\\
     
     
-    On suppose dans ce modèle que les proies ont nourriture illimitées, et que tous les individus sont en pleine santé.\\
-    On remarque clairement que en l'absence de proies le nombre de prédateurs tend vers l'extinction, alors que en l'absence de prédateurs le nombres de proies croient vers l'infini.\\
+    On suppose dans ce modèle, que les proies ont de la nourriture en illimitée, et que tous les individus sont en pleine santé.\\
+    On remarque clairement que en l'absence de proies le nombre de prédateurs tend vers l'extinction, alors que en l'absence de prédateurs le nombres de proies croît vers l'infini.\\
     
     
     
@@ -76,9 +76,57 @@ Avec $\alpha$, $\beta$, $\gamma$ et $\delta$ des constantes positives représent
     \chapter{Partie analytique}
     
 \section{Analyse des points critiques}
-Pour trouver les points critiques, il suffit de resoudre réspectivement : $\frac{dx(t)}{dt} = 0$ et $\frac{dy(t)}{dt} = 0$.\\
-Une solution évidente est $x = 0$ et $y =0$, donc le vecteur $X_1 = \begin{pmatrix} 0\\0 \end{pmatrix}$, pour le deuxième point critique il faut résoudre $\alpha - \beta y = 0$ et $\delta x - \gamma = 0$.
-    
+Pour trouver les points critiques, il suffit de résoudre réspectivement : $\frac{dx(t)}{dt} = 0$ et $\frac{dy(t)}{dt} = 0$.\\
+Une solution évidente est $x = 0$ et $y =0$, donc le vecteur $X_1 = \begin{pmatrix} 0\\0 \end{pmatrix}$. Pour le deuxième point critique il faut résoudre $\alpha - \beta y = 0$ et $\delta x - \gamma = 0$, soit $x = \frac{\gamma}{\delta}$ et $y = \frac{\alpha}{\beta}$, donc le second point critique est : $X_2 = \begin{pmatrix} \frac{\gamma}{\delta}\\ \frac{\alpha}{\beta} \end{pmatrix}$, les autres combinaisons de x est y sont impossibles, car si x = 0 , alors la deuxième équation dit que y = 0 et inversement.\\
 
+
+
+Pour étudier la nature de ces points critiques, on étudie la Jacobienne du système aux points critiques. La Jacobienne du système est : 
+\begin{equation}
+    J_f = \begin{pmatrix} \alpha - \beta y & - \beta x \\ \delta y & \delta x - \gamma \end{pmatrix}
+\end{equation}\\
+
+
+
+En X_1, $J_f (X_1) =  \begin{pmatrix} \alpha & 0 \\ 0 & - \gamma \end{pmatrix}$, les valeurs propres sont de signes opposées donc $X_1$ est un point selle.\\
+
+
+
+En X_2, $J_f(X_2) = \begin{pmatrix} 0 & - \frac{\beta \gamma}{\delta} \\ \frac{\delta \alpha}{\beta} & 0 \end{pmatrix}$, les valeurs propres sont des conjuguées imaginaires pures, donc $X_2$ est un centre.\\
+\\
+\\
+\\
+
+\section{Portrait de Phase}
+
+    Pour tracer le portrait de phase on étudie le signe des dérivées de x et y pour voir leurs variations sur les différentes parties de $\rr^2$. Ici le domaine de définition que l'on utilise est $\rr_+^*$ car on considère que le nombre de proies/prédateurs est positif. On sait que x est nulle, ça dérivée est aussi nulle, y est alors négative ou nulle, donc x reste nulle et y décroit, jusqu'à 0. Inversement si y est nulle, ça dérivée est nulle est la dérivée de x est positive donc x croit, et enfin en (0,0) les dérivées sont nulles donc x et y ne bougent pas, ce qui est normal car il n'y a ni proies ni prédateurs.\\
+    
+    
+    
+    
+    Pour le deuxième point critique sur la droite $x = \frac{\gamma}{\delta}$ la dérivée de x est nulle donc le nombre de proies ne varie pas, de la même manière si $y = \frac{\alpha}{\beta}$ la dérivée de y est nulle donc le nombre de prédateurs ne varie pas.\\
+    
+    
+    
+       Il nous reste donc quatres quadrants à étudier :\\
+    -si $x < \frac{\gamma}{\alpha}$ et $y < \frac{\alpha}{\beta}$, alors la dérivée de x est positive et la dérivée de y est négative, donc x croît et y décroît sur ce quadrant.\\
+    -si $x > \frac{\gamma}{\alpha}$ et $y < \frac{\alpha}{\beta}$, alors les dérivées de x et y sont positives, donc x et y croissent sur ce quadrant.\\
+    -si $x > \frac{\gamma}{\alpha}$ et $y > \frac{\alpha}{\beta}$, alors la dérivée de x est négative et la dérivée de y est positive, donc x décroît et y croît sur ce quadrant.\\
+    -si $x < \frac{\gamma}{\alpha}$ et $y > \frac{\alpha}{\beta}$, alors les dérivées de x et de y sont négatives, donc x et y décroissent sur ce quadrant.\\
+    \newpage
+    
+On obtient donc le portrait de phase suivant aux conditions $\alpha = \frac{2}{3}$, $\beta = \frac{4}{3}$ et $\gamma = \delta = 1$:\\
+\includegraphics[scale=0.5]{vraimodele}
+
+\newpage
+On peut tracer une approximation de x et de y, soit par la méthode de Euler, soit par la méthode de Runge-Kutta, on obtient donc les graphiques suivants aux mêmes conditions que le graphique précédent: \\
+
+\includegraphics[scale=0.4]{images/graphxy.png}
+
+
+
+\chapter{Conclusion/Interprétation}
+
+On peut distinguer sur le graphiques plusieurs cas, selon les conditions initiales (qui sont les éffectifs de base des proies et des prédateurs), si il n'y a pas de proies, les prédateurs s'éteignent et si il n'y a pas de prédateurs, les proies ne s'arrêtent pas d'augmenter. Les différentes courbes tracées sur les graphiques sont les courbes en fonction des conditions initiales. De plus, si on prend le sens observé dans la partie précédente, les proies augmentent quand le nombre de prédateurs est bas, puis quand le nombre de proies est plus haut le nombres de prédateurs augmentent, puis quand le nombre de prédateurs est haut le nombre de proies diminue et enfin quand le nombre de proies est faible, le nombre de prédateurs diminue. C'est d'autant plus flagrant dans le deuxème graphique. Finalement on remarque que les évolutions respéctives des deux populations sont périodiques, de même périodes, et donc l'extinction d'une des deux populations ne se réalise théoriquement jamais dans ces conditions.
 
 \end{document}
