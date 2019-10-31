@@ -1,0 +1,134 @@
+\documentclass[a4paper,16pt,twoside]{report}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[utf8x]{inputenc}
+\title{Prey/Predator model}
+\date{\today}
+\author{Sebatien EYZAT\thanks{\href{seb.eyzat@gmail.com}{\tt seb.eyzat@gmail.com}}
+}
+\def \rr {{\mathbb R}} % L'ensemble R
+\def \cc {{\mathbb C}} % L'ensemble C
+\def \nn {{\mathbb N}} % L'ensemble N
+\def \zz {{\mathbb Z}} % L'ensemble Z
+\begin{document}
+\maketitle
+
+\cleardoublepage
+\tableofcontents
+
+\chapter{Theoretical part}
+\section{Presentation}
+The prey/predator model, also call LOKTA-VOLTERRA's equation of predation is a system of differential equation which modelise the evolution of a population of prey and a population of predator. \\
+In other worlds, this system describe a biologic system where predators and prey interact.
+
+
+Historically, this system was proposed by the Austrian mathematician/statistician Alfred James LOKTA in 1925 and by the Italian mathematician/physician Vito VOLTERRA in 1926.
+
+
+Two concrete example of using this system of equation differential, are the study of the behaviour of population of lynx and snow hare which interact together. And the study of cholinergic neurons, contributor of REM sleep in relation to aminergic neurons related to standby state.
+
+
+In our case, we are gonna use the "animal" model to facilitate the understanding.
+\section{Introduction of the differential equation}
+The equation of predation of Lokta-Volterra, in a couple of nonlinear equation of the first order:\\
+\begin{equation}
+   \left\{
+    \begin{array}{rcr}
+    \frac{dx(t)}{dt}=x(t)(\alpha - \beta y(t))\\
+    \frac{dy(t)}{dt}=y(t)(\delta x(t)- \gamma)
+    \end{array}
+		\right.
+\end{equation}\\
+
+
+
+
+Where x is preys population (snow hare), and y is predators population (lynx).\\
+
+
+
+
+With $\alpha$, $\beta$, $\gamma$ and $\delta$ positives constants which is respectively:\\
+    -the exponential reproduction, which not depend of predators.\\
+    -the predation ration which is proportional to mettings.\\
+    -the predator population's growth which is proportional to mettings.\\
+    -the number of natural death which is not depending of preys and which exponentially decrease.\\
+    
+    
+    In this model we suppose, that preys have unlimited food, and that individuals are healthy.\\
+    It was noted , that in absence of preys, number of predators decrease, and is moving toward the extinction.\\
+    
+    
+    
+    Mathematically, we see it because when we take y = 0, the solution of the first equation is : $x(t)=e^{\alpha t}+constant$ (exponential growth).\\ Then if x = 0, in the second equation : $y(t)=e^{- \gamma t}+ constant$ (exponential decrease).\\
+    
+    
+    
+    Next, we are gonna see the mathematical resolution in different cases, and the different interpretations.\\
+    
+    \chapter{analytical part}
+    
+\section{study of critical points}
+To find critical points, we must solve respectively : $\frac{dx(t)}{dt} = 0$ and $\frac{dy(t)}{dt} = 0$.\\
+An obvious solution is : $x = 0$ and $y =0$, then the vector $X_1 = \begin{pmatrix} 0\\0 \end{pmatrix}$. For the second solution, we solve : $\alpha - \beta y = 0$ et $\delta x - \gamma = 0$, so $x = \frac{\gamma}{\delta}$ and $y = \frac{\alpha}{\beta}$, then the second critical point is : $X_2 = \begin{pmatrix} \frac{\gamma}{\delta}\\ \frac{\alpha}{\beta} \end{pmatrix}$, other combinations of x and y are impossible, because if x = 0 , the we find y = 0 in the second equation and reversal.\\
+
+
+
+To study the nature of critical points, we study the Jacobian matrix of the system in critical points. The Jacobian matrix of the system is : 
+\begin{equation}
+    J_f = \begin{pmatrix} \alpha - \beta y & - \beta x \\ \delta y & \delta x - \gamma \end{pmatrix}
+\end{equation}\\
+
+
+
+when X_1, $J_f (X_1) =  \begin{pmatrix} \alpha & 0 \\ 0 & - \gamma \end{pmatrix}$, eigenvalues are opposite in sign, so $X_1$ is a saddle-path.\\
+
+
+
+when X_2, $J_f(X_2) = \begin{pmatrix} 0 & - \frac{\beta \gamma}{\delta} \\ \frac{\delta \alpha}{\beta} & 0 \end{pmatrix}$,eigenvalues are pure imaginary, conjugate , so $X_2$ is a center.\\
+\\
+\\
+\\
+
+\section{ Phase portrait}
+
+    To draw the phase portrait, we study derivative sign of x and y, to see variations in different parts of $\rr^2$.Here we use the domain definition : $\rr_+^*$ because we suppose that numbers of preys/predator are positives. We know that if x is null, its derivative is null, so y is negative or null, so x stay null and y decrease, till  0. Conversely, if y is null, its derivative is null and the derivative of x is positive so x increase, and then in (0,0) derivatives are null so x et y don't move, it is normal because there's no preys and no predators.\\
+    
+    
+    
+    
+    For the second critical point,on the straight line $x = \frac{\gamma}{\delta}$ the derivative of x is null and the number of preys doesn't move, in the same way if $y = \frac{\alpha}{\beta}$ the derivative of y is null so the number of predators is doesn't move.\\
+    
+    
+    
+       We have four quadrant to study :\\
+    -if $x < \frac{\gamma}{\alpha}$ and $y < \frac{\alpha}{\beta}$, so the derivative of x is positive and the derivative of y is negative, so x increase and y decrease in this quadrant.\\
+    -if $x > \frac{\gamma}{\alpha}$ and $y < \frac{\alpha}{\beta}$, so derivative of x and y are positives, so x and y increase in this quadrant.\\
+    -if $x > \frac{\gamma}{\alpha}$ and $y > \frac{\alpha}{\beta}$, so the derivative of x is negative and the derivative of y is positive, so x decrease and y increase on this quadrant.\\
+    -if $x < \frac{\gamma}{\alpha}$ and $y > \frac{\alpha}{\beta}$, so derivatives of x and y are negatives, so x and y decrease on this quadrant.\\
+    \newpage
+
+
+
+We obtain this phase portrait with conditions $\alpha = \frac{2}{3}$, $\beta = \frac{4}{3}$ and $\gamma = \delta = 1$:\\
+\includegraphics[scale=0.5]{vraimodele}
+
+\newpage
+We can draw approximation of x and y, by the Euler method, or by the Runge-Kutta method, we obtain this graph on the same conditions: \\
+
+\includegraphics[scale=0.4]{images/graphxy.png}
+
+
+
+\chapter{Conclusion/Interpretation}
+
+We can distinguish different cases, according to different initial conditions (which are core staff of preys and predators), if there's no prey, predators extinct and if there's no predators , preys don't stop to increase. the different curves plot in the first graph are curves according to initial conditions. Furthermore, if we take the direction observed in the previous part, the number of prey increase when the number of predators is low, then when the number of preys is high the numbers of predators increase, then when the number of predators is high, the number of preys decrease and finally when the number of preys is low, the number of predators decrease. this is obviously, in the second graph. Finally, it was noted that the evolution of respective populations is periodic, with the same period, so the extinction of both populations is theoretically impossible in this conditions.
+
+\end{document}
